@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <div class="offset-4 col-4 text-center" style="padding-top: 25px;">
+        <h1 style="color: green;">User Registration</h1>
+    </div>
+    <div class="offset-3 col-md-6 well ">
+        <div class="card">
+            <div class="card-body">
+        <form method="post" style="padding-right: 20px;padding-left: 20px;" autocomplete="on">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-primary btn-block" value="Register">
+            <p class="mt-2">If you have an account, <a href="{% url 'login' %}">Sign In</a></p>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+{% endblock %}

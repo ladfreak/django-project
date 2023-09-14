@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<section class="bg-light offset-0 col-12 py-2 my-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3>Favourite Items</h3>
+          <hr style="border-color: #b8bfc2;">
+          <div class="row">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Unit price</th>
+                    <th>Remove</th>
+                </tr>
+                {% for item in fav %}
+                    <tr>
+                        <td><img src="{{item.product.product_image.url}}" height="75px" alt=""></td>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.product.selling_price | stringformat:'d'}}</td>
+                        <td><a href="{% url 'fav_remove' item.id %}" onclick="return confirm('Are you sure? to remove')" class="btn btn-danger btn-sm"><i class="fa fa-trash"> Remove</i></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  {% endblock %}

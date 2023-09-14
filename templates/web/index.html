@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<section class="bg-light offset-0 col-12 py-2 my-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">{{ catagory_name }}'s</h4>
+          <hr style="border-color: #b8bfc2;">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'categories' %}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ catagory_name }}</li>
+            </ol>
+          </nav>
+        </div>
+        {% for item in products %}
+        <div class="offset-0 col-3">
+          <div class="card my-2">
+            <center><img src="{{ item.product_image.url }}" class="catagoryimg card-img-top" alt="categories"></center>
+            
+            <a href="{% url 'product_details' catagory_name item.name %}" class="text-decoration-none">
+              <div class="card-body">
+                <h6>{{ item.name }}</h6>
+                <p class="card-text">
+                  <span class="float-start old-price"><s>Rs.{{ item.orignal_price | stringformat:"d" }}</s></span>
+                  <span class="float-end new-price">Rs.{{ item.selling_price | stringformat:"d" }}</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

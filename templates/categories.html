@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<section class="bg-light offset-0 col-12 py-2 my-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3>Categories</h3>
+          <hr style="border-color: #b8bfc2;">
+          <div class="row">
+            {% for item in catagories %}
+              <div class="offset-0 col-3">
+                <div class="card my-2">
+                  <center><img src="{{ item.image.url }}" class="catagoryimg card-img-top" alt="categories"></center>
+                  <a href="{% url 'collection' item.name %}" class="text-decoration-none">
+                    <div class="card-body">
+                      <h6 class="card-title text-primary">{{ item.name }}</h6>
+                      <p class="card-text">{{ item.discription }}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if messages %}
+      <div class="container-fluid">
+        <div class="row">
+          <div class="offset-md-3 col-md-5" style="padding-top: 200px;">
+            <h3>Collection</h3>
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
